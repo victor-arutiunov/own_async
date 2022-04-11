@@ -18,19 +18,13 @@ def create_client(server_socket):
     client_socket, addr = server_socket.accept()
     while True:
         yield client_socket
-        message = recieve_message(client_socket)
-        if not message:
-            break
+        recieve_message(client_socket)
 
 
 def recieve_message(client_socket):
     print("Recieving message...")
     request = client_socket.recv(4096)
-    if not request:
-        return False
-    else:
-        return True
-        print(request)
+    print(request)
 
 
 Async.add_task(create_server())
